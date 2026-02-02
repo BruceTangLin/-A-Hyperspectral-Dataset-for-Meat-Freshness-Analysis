@@ -45,8 +45,9 @@ The dataset is acquired using a near-infrared hyperspectral camera covering the 
 | 18   | 2025/12/24 | 23:10 |
 | 19   | 2025/12/25 | 09:50 |
 
-每个时段对应一幅高光谱立方体数据，保存为 .mat 文件，按时间顺序命名为：01.mat, 02.mat, ..., 19.mat
-数据路径结构示例如下：
+每个时段对应一幅高光谱立方体数据，保存为 .mat 文件，数据路径结构示例如下：
+
+Each `.mat` file contains a hyperspectral cube, the data are organized as follows:
 
 ```
 -- data_folder
@@ -57,31 +58,37 @@ The dataset is acquired using a near-infrared hyperspectral camera covering the 
 ```
 
 其中每个 .mat 文件包含一个三维数组(行数×列数×波段数)：
+
+Each .mat file contains a 3D array:
+
 ```
 hyper_image (lines × samples × bands)
 ```
 
-## 下载
+## 下载（Download）
 -百度网盘：[下载](https://pan.baidu.com/s/1YXjXaqbtPhYh48rsOsqkNQ?pwd=79p4)
 
 -Google Drive：[download](https://drive.google.com/file/d/15yi7OUNrrITi8NQscTNOMkhm-n9BY28E/view?usp=drive_link)
 
-## 方法
-1. 在不同时间阶段采集肉类高光谱图像。
-2. 从感兴趣区域（ROI）提取端元光谱：
+## 方法 （Method）
+1. 在不同时间阶段采集肉类高光谱图像。（Hyperspectral images of meat are acquired at different time stages.）
+2. 从感兴趣区域（ROI）提取端元光谱（Endmember spectra are extracted from regions of interest (ROI)）：
 - 新鲜瘦肉 lean_fresh_end.mat
 - 新鲜肥肉 fat_fresh_end.mat
 - 不新鲜瘦肉 lean_dry_end.mat
 - 不新鲜肥肉 fat_dry_end.mat
 - 传送带背景 bk_end.mat
-3. 假设线性混合模型：
+3. 假设线性混合模型（A linear mixing model is assumed）：
    $x = Ea$
-4. 采用全约束最小二乘（FCLS）进行解混：
+4. 采用全约束最小二乘（FCLS）进行解混（Fully Constrained Least Squares (FCLS) is used for spectral unmixing）：
    $\min_a \|Ea - x\|^2,\quad s.t.\ a \ge 0, \sum a = 1$
-5. 得到端元丰度估计图，并用于新鲜度评估。
+5. 得到端元丰度估计图，并用于新鲜度评估。（Endmember abundance maps are obtained and used for meat freshness evaluation.）
 
-## 代码
-运行main.m，批量解混，输出彩色丰度反演图
+## 代码 （Code）
+运行main.m，批量解混，输出彩色丰度反演图：
+
+Run main.m to perform batch unmixing and output color-coded abundance maps:
+
 ```
-batch_unmix_meat('/数据路径/mat_data', '/输出路径/results');
+batch_unmix_meat('/data_path/mat_data', '/output_path/results');
 ```
