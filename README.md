@@ -62,3 +62,27 @@ hyper_image (lines × samples × bands)
 -百度网盘：[下载](https://pan.baidu.com/s/1YXjXaqbtPhYh48rsOsqkNQ?pwd=79p4)
 
 -Google Drive：[download](https://drive.google.com/file/d/15yi7OUNrrITi8NQscTNOMkhm-n9BY28E/view?usp=drive_link)
+
+## 方法
+1. 在不同时间阶段采集肉类高光谱图像。
+2. 从感兴趣区域（ROI）提取端元光谱：
+- 新鲜瘦肉  
+- 新鲜肥肉  
+- 不新鲜瘦肉  
+- 不新鲜肥肉  
+- 传送带背景
+3. 假设线性混合模型：
+   
+   \[
+   x = E a
+   \]
+4. 采用全约束最小二乘（FCLS）进行解混：
+
+   \[
+   \min_a \|Ea - x\|^2,\quad s.t.\ a \ge 0, \sum a = 1
+   \]
+
+5. 得到端元丰度图，并用于新鲜度评估。
+
+
+
