@@ -1,5 +1,4 @@
-# 高光谱肉类新鲜度数据集
-# A Hyperspectral Dataset for Meat Freshness Analysis
+# 高光谱肉类新鲜度数据集 （A Hyperspectral Dataset for Meat Freshness Analysis）
 本项目开源了一个用于肉类新鲜度分析的近红外高光谱数据集。数据由波段范围为 900–1700 nm 的近红外高光谱相机采集，并在连续 三天内分 19 个时段获取，用于描述肉类新鲜度随时间变化的过程。在数据分析中，选取传送带背景、最新鲜时刻的瘦肉和肥肉，以及最不新鲜时刻的瘦肉和肥肉作为端元光谱。基于线性混合模型（LMM）和全约束最小二乘（FCLS）方法，对高光谱图像进行解混，得到每个像素在各端元上的丰度估计结果。通过对端元丰度空间分布及其随时间变化趋势的分析，可实现对肉类新鲜度状态的定量判断与可视化展示。
 
 This project releases a near-infrared hyperspectral dataset for meat freshness analysis. The data are acquired using a near-infrared hyperspectral camera covering the spectral range of 900–1700 nm and are collected over three consecutive days, divided into 19 time points, to characterize the temporal evolution of meat freshness.
@@ -8,19 +7,18 @@ In the data analysis, the conveyor belt background, fresh lean meat and fresh fa
 
 By analyzing the spatial distribution of endmember abundances and their temporal variation, quantitative assessment and visual interpretation of meat freshness can be achieved.
 ##
-![c6af8feaaee68f0c3ab36434838c2267](https://github.com/user-attachments/assets/f6ebe061-eb13-496b-8141-9a68ebdff476)
-
 <img width="2062" height="1287" alt="pic_1" src="https://github.com/user-attachments/assets/46bcd3af-b403-40d1-8d6b-aca634cace79" />
-
-## 数据集简介
+## 数据集简介 （Dataset）
 数据集由波段范围为 900–1700 nm 的近红外高光谱相机采集，原始光谱包含 512 个通道。为降低噪声影响，去除了前 39 个通道和后 42 个通道，仅保留中间 431 个有效波段用于分析。 所有数据已完成黑白校正。
 
-- 光谱范围：**900–1700 nm**
-- 原始波段数：**512**
-- 使用波段数：**431**（去除前39个与后42个噪声波段）
-- 采集周期：**3天**
-- 采集时段数：**19个**
-- 肉类种类：鸡肉、牛肉、羊肉、猪肉、三文鱼
+The dataset is acquired using a near-infrared hyperspectral camera covering the spectral range of 900–1700 nm, originally consisting of 512 spectral channels. To reduce noise and improve data quality, the first 39 bands and the last 42 bands are removed, and only the central 431 bands are retained for analysis. All data have been calibrated for black and white.
+
+- 光谱范围（Spectral range）：**900–1700 nm**
+- 原始波段数（Original bands）：**512**
+- 使用波段数（Retained bands）：**431**
+- 采集周期（Acquisition period）：**3天**
+- 采集时段数（Number of time points）：**19个**
+- 肉类种类（Meat types）：鸡肉（chicken）、牛肉（beef）、羊肉（mutton）、猪肉（pork）、三文鱼（salmon）
 
 | 序号 | 采集日期   | 时间  |
 |------|------------|-------|
@@ -35,14 +33,14 @@ By analyzing the spatial distribution of endmember abundances and their temporal
 | 9    | 2025/12/23 | 21:32 |
 | 10   | 2025/12/24 | 22:28 |
 | 11   | 2025/12/24 | 22:54 |
-| 12   | 2025/12/24 | 9:55  |
+| 12   | 2025/12/24 | 09:55 |
 | 13   | 2025/12/24 | 12:58 |
 | 14   | 2025/12/24 | 15:05 |
 | 15   | 2025/12/24 | 16:48 |
 | 16   | 2025/12/24 | 19:05 |
 | 17   | 2025/12/24 | 21:47 |
 | 18   | 2025/12/24 | 23:10 |
-| 19   | 2025/12/25 | 9:50  |
+| 19   | 2025/12/25 | 09:50 |
 
 每个时段对应一幅高光谱立方体数据，保存为 .mat 文件，按时间顺序命名为：01.mat, 02.mat, ..., 19.mat
 数据路径结构示例如下：
@@ -55,7 +53,7 @@ By analyzing the spatial distribution of endmember abundances and their temporal
    └── 19.mat
 ```
 
-其中每个 .mat 文件包含一个三维数组：
+其中每个 .mat 文件包含一个三维数组(行数×列数×波段数)：
 ```
 hyper_image (lines × samples × bands)
 ```
@@ -79,5 +77,8 @@ hyper_image (lines × samples × bands)
    $\min_a \|Ea - x\|^2,\quad s.t.\ a \ge 0, \sum a = 1$
 5. 得到端元丰度估计图，并用于新鲜度评估。
 
-
-By analyzing the spatial distribution of endmember abundances and their temporal variation, quantitative assessment and visual interpretation of meat freshness can be achieved.
+## 代码
+运行main.m，批量解混，输出彩色丰度反演图
+```
+batch_unmix_meat('/数据路径/mat_data', '/输出路径/results');
+```
