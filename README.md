@@ -66,23 +66,20 @@ hyper_image (lines × samples × bands)
 ## 方法
 1. 在不同时间阶段采集肉类高光谱图像。
 2. 从感兴趣区域（ROI）提取端元光谱：
-- 新鲜瘦肉  
-- 新鲜肥肉  
-- 不新鲜瘦肉  
-- 不新鲜肥肉  
-- 传送带背景
+- 新鲜瘦肉 lean_fresh_end.mat
+- 新鲜肥肉 fat_fresh_end.mat
+- 不新鲜瘦肉 lean_dry_end.mat
+- 不新鲜肥肉 fat_dry_end.mat
+- 传送带背景 bk_end.mat
 3. 假设线性混合模型：
-   
-   \[
-   x = E a
-   \]
+  
+   $ x = E a$
+  
 4. 采用全约束最小二乘（FCLS）进行解混：
 
-   \[
-   \min_a \|Ea - x\|^2,\quad s.t.\ a \ge 0, \sum a = 1
-   \]
+   $\min_a \|Ea - x\|^2,\quad s.t.\ a \ge 0, \sum a = 1$
 
-5. 得到端元丰度图，并用于新鲜度评估。
+5. 得到端元丰度估计图，并用于新鲜度评估。
 
 
 
