@@ -6,9 +6,12 @@ This project releases a near-infrared hyperspectral dataset for meat freshness a
 In the data analysis, the conveyor belt background, fresh lean meat and fresh fat meat at the earliest stage, as well as stale lean meat and stale fat meat at the latest stage, are selected as endmember spectra. Based on the Linear Mixing Model (LMM) and the Fully Constrained Least Squares (FCLS) method, hyperspectral images are unmixed to estimate the pixel-wise abundances corresponding to each endmember.
 
 By analyzing the spatial distribution of endmember abundances and their temporal variation, quantitative assessment and visual interpretation of meat freshness can be achieved.
+
 ##
 <img width="2062" height="1287" alt="pic_1" src="https://github.com/user-attachments/assets/46bcd3af-b403-40d1-8d6b-aca634cace79" />
+
 ## 数据集简介 （Dataset）
+
 数据集由波段范围为 900–1700 nm 的近红外高光谱相机采集，原始光谱包含 512 个通道。为降低噪声影响，去除了前 39 个通道和后 42 个通道，仅保留中间 431 个有效波段用于分析。 所有数据已完成黑白校正。
 
 The dataset is acquired using a near-infrared hyperspectral camera covering the spectral range of 900–1700 nm, originally consisting of 512 spectral channels. To reduce noise and improve data quality, the first 39 bands and the last 42 bands are removed, and only the central 431 bands are retained for analysis. All data have been calibrated for black and white.
@@ -20,7 +23,7 @@ The dataset is acquired using a near-infrared hyperspectral camera covering the 
 - 采集时段数（Number of time points）：**19个**
 - 肉类种类（Meat types）：鸡肉（chicken）、牛肉（beef）、羊肉（mutton）、猪肉（pork）、三文鱼（salmon）
 
-| 序号 | 采集日期   | 时间  |
+| 序号（No.） | 采集日期（date） | 时间（time）  |
 |------|------------|-------|
 | 1    | 2025/12/23 | 11:52 |
 | 2    | 2025/12/23 | 14:08 |
