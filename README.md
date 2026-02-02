@@ -1,5 +1,4 @@
 # 高光谱肉类新鲜度数据集 
-
 A Hyperspectral Dataset for Meat Freshness Analysis
 ##
 本项目开源了一个用于肉类新鲜度分析的近红外高光谱数据集。数据由波段范围为 900–1700 nm 的近红外高光谱相机采集，并在连续 三天内分 19 个时段获取，用于描述肉类新鲜度随时间变化的过程。在数据分析中，选取传送带背景、最新鲜时刻的瘦肉和肥肉，以及最不新鲜时刻的瘦肉和肥肉作为端元光谱。基于线性混合模型（LMM）和全约束最小二乘（FCLS）方法，对高光谱图像进行解混，得到每个像素在各端元上的丰度估计结果。通过对端元丰度空间分布及其随时间变化趋势的分析，可实现对肉类新鲜度状态的定量判断与可视化展示。
@@ -74,7 +73,7 @@ hyper_image (lines × samples × bands)
 -Google Drive：[download](https://drive.google.com/file/d/15yi7OUNrrITi8NQscTNOMkhm-n9BY28E/view?usp=drive_link)
 
 ## 方法 （Method）
-1. 在不同时间阶段采集肉类高光谱图像。（Hyperspectral images of meat are acquired at different time stages.）
+1. 在不同时间阶段采集肉类高光谱图像（Hyperspectral images of meat are acquired at different time stages）；
 2. 从感兴趣区域（ROI）提取端元光谱（Endmember spectra are extracted from regions of interest (ROI)）：
 - 新鲜瘦肉 lean_fresh_end.mat
 - 新鲜肥肉 fat_fresh_end.mat
@@ -85,7 +84,7 @@ hyper_image (lines × samples × bands)
    $x = Ea$
 4. 采用全约束最小二乘（FCLS）进行解混（Fully Constrained Least Squares (FCLS) is used for spectral unmixing）：
    $\min_a \|Ea - x\|^2,\quad s.t.\ a \ge 0, \sum a = 1$
-5. 得到端元丰度估计图，并用于新鲜度评估。（Endmember abundance maps are obtained and used for meat freshness evaluation.）
+5. 得到端元丰度估计图，并用于新鲜度评估（Endmember abundance maps are obtained and used for meat freshness evaluation.）。
 
 ## 代码 （Code）
 运行main.m，批量解混，输出彩色丰度反演图：
