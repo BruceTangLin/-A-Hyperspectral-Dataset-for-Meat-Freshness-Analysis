@@ -18,7 +18,7 @@ By analyzing the spatial distribution of endmember abundances and their temporal
 
 每个时段对应一幅高光谱立方体数据，保存为 .mat 文件，按时间顺序命名为：01.mat, 02.mat, ..., 19.mat
 数据路径结构示例如下：
-'''
+'''text
 -- data_folder
    ├── 01.mat
    ├── 02.mat
