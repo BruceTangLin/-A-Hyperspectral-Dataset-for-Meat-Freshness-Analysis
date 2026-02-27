@@ -85,11 +85,43 @@ hyper_image (lines × samples × bands)
    $\min_a \|Ea - x\|^2,\quad s.t.\ a \ge 0, \sum a = 1$
 5. 得到端元丰度估计图，并用于新鲜度评估（Endmember abundance maps are obtained and used for meat freshness evaluation.）。
 
-## 代码 （Code）
+## MATLAB代码 （MATLAB Code）
 运行main.m，批量解混，输出彩色丰度反演图：
 
 Run main.m to perform batch unmixing and output color-coded abundance maps:
 
 ```
 batch_unmix_meat('/data_path/mat_data', '/output_path/results');
+```
+## PyTorch代码 （PyTorch Code for 1D-CNN）
+训练 （Training）
+```
+python train.py \
+  --train_dir ./train_mat \
+  --endmembers_pth ./endmembers \
+  --out_dir ./runs \
+  --epochs 100 \
+  --batch_size 1024 \
+  --lr 1e-3 \
+  --gpu 0
+```
+丰度估计与可视化 (Abundance Estimation and Visualization)
+```
+python test.py \
+  --test_dir ./test_mat \
+  --ckpt ./runs/best.pth \
+  --endmembers_dir ./endmembers \
+  --out_dir ./test_results \
+  --gpu 0 \
+  --infer_bs 8192
+```
+新鲜度曲线绘制 (Freshness Curve Generation)
+```
+python draw_freshness_curve.py \
+  --test_dir ./test_mat \
+  --ckpt ./runs/best.pth \
+  --endmembers_dir ./endmembers \
+  --out_dir ./freshness_results \
+  --gpu 0 \
+  --infer_bs 8192
 ```
