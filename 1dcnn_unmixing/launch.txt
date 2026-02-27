@@ -1,0 +1,24 @@
+python train.py \
+  --train_dir train_data \
+  --mat_key hyper_image \
+  --endmembers_pth endmembers \
+  --gpu 0 \
+  --batch_size 4096 \
+  --epochs 50
+
+python test.py \
+  --test_dir /home/data/tlrz/meat_unmixing/mat_data \
+  --mat_key hyper_image \
+  --ckpt runs/best.pth \
+  --out_dir test_results \
+  --gpu 0 \
+  --infer_bs 8192
+
+python draw_freshness_curve.py \
+  --test_dir /home/data/tlrz/meat_unmixing/mat_data \
+  --mat_key hyper_image \
+  --ckpt runs/best.pth \
+  --endmembers_dir endmembers \
+  --gpu 0 \
+  --infer_bs 8192 \
+  --out_dir freshness_results
